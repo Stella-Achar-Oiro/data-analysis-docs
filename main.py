@@ -21,14 +21,18 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Configure logging
+# Configure logging - use stdout only in production
+log_handlers = [logging.StreamHandler()]
+
+# Only add file handler if logs directory exists
+logs_dir = Path('logs')
+if logs_dir.exists():
+    log_handlers.append(logging.FileHandler('logs/access.log'))
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('logs/access.log'),
-        logging.StreamHandler()
-    ]
+    handlers=log_handlers
 )
 logger = logging.getLogger(__name__)
 
