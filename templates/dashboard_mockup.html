@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Demo - Data Analysis Documentation{% endblock %}
+
+{% block content %}
+<!-- Navigation Header -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-brand">
+            <div class="brand-logo">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">DataAnalytics</span>
+                <span class="brand-label">Documentation</span>
+            </div>
+        </div>
+
+        <nav class="header-nav">
+            <a href="/" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/dashboard-demo" class="nav-link active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard Demo</span>
+            </a>
+        </nav>
+
+        <div class="header-user">
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-email">{{ user_email }}</span>
+            </div>
+            <a href="/logout" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div class="dashboard-title-section">
+            <h1 class="dashboard-title">
+                <i class="fas fa-tachometer-alt"></i>
+                Business Analytics Dashboard
+            </h1>
+            <p class="dashboard-subtitle">Real-time overview of key business metrics</p>
+        </div>
+
+        <div class="dashboard-controls">
+            <div class="date-selector">
+                <i class="fas fa-calendar-alt"></i>
+                <select id="dateRange">
+                    <option value="30">Last 30 Days</option>
+                    <option value="90">Last 90 Days</option>
+                    <option value="365" selected>Last 12 Months</option>
+                </select>
+            </div>
+
+            <div class="region-selector">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="regionFilter">
+                    <option value="all">All Regions</option>
+                    <option value="a">Region A</option>
+                    <option value="b">Region B</option>
+                    <option value="c">Region C</option>
+                    <option value="d">Region D</option>
+                </select>
+            </div>
+
+            <button class="btn-refresh" onclick="refreshDashboard()">
+                <i class="fas fa-sync-alt"></i>
+                Refresh
+            </button>
+        </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-icon revenue">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="kpi-content">
+                <span class="kpi-label">Total Revenue</span>
+                <span class="kpi-value" id="totalRevenue">$978,450</span>
+                <div class="kpi-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>12.5% vs last period</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon orders">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="kpi-content">
+                <span class="kpi-label">Total Orders</span>
+                <span class="kpi-value" id="totalOrders">3,842</span>
+                <div class="kpi-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>8.3% vs last period</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon customers">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="kpi-content">
+                <span class="kpi-label">Active Customers</span>
+                <span class="kpi-value" id="activeCustomers">1,567</span>
+                <div class="kpi-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>15.2% vs last period</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon aov">
+                <i class="fas fa-receipt"></i>
+            </div>
+            <div class="kpi-content">
+                <span class="kpi-label">Avg Order Value</span>
+                <span class="kpi-value" id="avgOrderValue">$254.67</span>
+                <div class="kpi-change negative">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>3.1% vs last period</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="charts-grid">
+        <!-- Revenue Trend Chart -->
+        <div class="chart-box large">
+            <div class="chart-header">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-line"></i>
+                    Revenue Trend (Last 12 Months)
+                </h3>
+                <div class="chart-actions">
+                    <button class="chart-action" title="Export">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="revenueTrendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Top Products Chart -->
+        <div class="chart-box">
+            <div class="chart-header">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Top Products by Sales
+                </h3>
+            </div>
+            <div class="chart-container">
+                <canvas id="topProductsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Sales by Category Chart -->
+        <div class="chart-box">
+            <div class="chart-header">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-pie"></i>
+                    Sales by Category
+                </h3>
+            </div>
+            <div class="chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Customer Segments Chart -->
+        <div class="chart-box">
+            <div class="chart-header">
+                <h3 class="chart-title">
+                    <i class="fas fa-users"></i>
+                    Customer Segments
+                </h3>
+            </div>
+            <div class="chart-container">
+                <canvas id="segmentsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Regional Performance Chart -->
+        <div class="chart-box">
+            <div class="chart-header">
+                <h3 class="chart-title">
+                    <i class="fas fa-globe"></i>
+                    Regional Performance
+                </h3>
+            </div>
+            <div class="chart-container">
+                <canvas id="regionalChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Tables Section -->
+    <div class="tables-section">
+        <div class="table-box">
+            <div class="table-header">
+                <h3 class="table-title">
+                    <i class="fas fa-table"></i>
+                    Recent Orders
+                </h3>
+                <span class="table-badge">Last 10</span>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>ORD-10042</code></td>
+                            <td>Customer A</td>
+                            <td>Product A</td>
+                            <td>$345.00</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>2026-01-15</td>
+                        </tr>
+                        <tr>
+                            <td><code>ORD-10041</code></td>
+                            <td>Customer B</td>
+                            <td>Product C</td>
+                            <td>$189.50</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>2026-01-15</td>
+                        </tr>
+                        <tr>
+                            <td><code>ORD-10040</code></td>
+                            <td>Customer C</td>
+                            <td>Product B</td>
+                            <td>$567.25</td>
+                            <td><span class="status-badge processing">Processing</span></td>
+                            <td>2026-01-14</td>
+                        </tr>
+                        <tr>
+                            <td><code>ORD-10039</code></td>
+                            <td>Customer D</td>
+                            <td>Product E</td>
+                            <td>$123.00</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>2026-01-14</td>
+                        </tr>
+                        <tr>
+                            <td><code>ORD-10038</code></td>
+                            <td>Customer E</td>
+                            <td>Product D</td>
+                            <td>$456.75</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>2026-01-13</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Footer -->
+    <div class="dashboard-footer">
+        <div class="footer-info">
+            <p>
+                <i class="fas fa-info-circle"></i>
+                This is a demo dashboard with fictional data. All metrics are for demonstration purposes only.
+            </p>
+        </div>
+        <div class="footer-meta">
+            <span>Last Updated: {{ timestamp }}</span>
+            <span>|</span>
+            <span>User: {{ user_email }}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/charts.js"></script>
+<script>
+    // Initialize all dashboard charts
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeDashboardCharts();
+    });
+
+    function refreshDashboard() {
+        const btn = document.querySelector('.btn-refresh');
+        btn.classList.add('spinning');
+
+        setTimeout(() => {
+            btn.classList.remove('spinning');
+            // In a real app, this would refresh the data
+        }, 1000);
+    }
+</script>
+{% endblock %}

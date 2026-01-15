@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}{{ topic_title }} - Data Analysis Documentation{% endblock %}
+
+{% block content %}
+<!-- Navigation Header -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-brand">
+            <div class="brand-logo">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">DataAnalytics</span>
+                <span class="brand-label">Documentation</span>
+            </div>
+        </div>
+
+        <nav class="header-nav">
+            <a href="/" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/dashboard-demo" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard Demo</span>
+            </a>
+        </nav>
+
+        <div class="header-user">
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-email">{{ user_email }}</span>
+            </div>
+            <a href="/logout" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Documentation Layout -->
+<div class="doc-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="doc-sidebar">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">Documentation</h3>
+        </div>
+
+        <nav class="sidebar-nav">
+            {% for module_key, mod in modules.items() %}
+            <div class="nav-module {% if module_key == module %}active{% endif %}">
+                <div class="module-toggle">
+                    <i class="fas fa-{{ mod.icon }}"></i>
+                    <span>{{ mod.title }}</span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <ul class="module-links">
+                    {% for topic_key, t in mod.topics.items() %}
+                    <li>
+                        <a href="/docs/{{ module_key }}/{{ topic_key }}"
+                           class="{% if module_key == module and topic_key == topic %}active{% endif %}">
+                            {{ t.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="session-info">
+                <i class="fas fa-clock"></i>
+                <span>Session expires in 15 min</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Documentation Content -->
+    <main class="doc-main">
+        <!-- Breadcrumb -->
+        <nav class="doc-breadcrumb">
+            <a href="/">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>{{ module_title }}</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">{{ topic_title }}</span>
+        </nav>
+
+        <!-- Content Area -->
+        <article class="doc-content">
+            <div class="content-watermark">
+                {{ user_email }} | {{ timestamp }} | DEMO
+            </div>
+
+            <div class="markdown-body">
+                {{ content | safe }}
+            </div>
+        </article>
+
+        <!-- Document Footer -->
+        <footer class="doc-footer">
+            <div class="footer-nav">
+                <div class="nav-prev">
+                    <!-- Previous link would be dynamically generated -->
+                </div>
+                <div class="nav-next">
+                    <!-- Next link would be dynamically generated -->
+                </div>
+            </div>
+
+            <div class="footer-meta">
+                <p>
+                    <i class="fas fa-shield-alt"></i>
+                    Document accessed by {{ user_email }} at {{ timestamp }}
+                </p>
+                <p class="demo-notice">
+                    <i class="fas fa-info-circle"></i>
+                    This is demo documentation. All data is fictional and anonymized.
+                </p>
+            </div>
+        </footer>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/charts.js"></script>
+<script>
+    // Initialize any charts in the documentation
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find all chart containers and initialize
+        initializeDocCharts();
+
+        // Toggle sidebar modules
+        document.querySelectorAll('.module-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const module = this.closest('.nav-module');
+                module.classList.toggle('active');
+            });
+        });
+    });
+</script>
+{% endblock %}

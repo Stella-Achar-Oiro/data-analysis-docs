@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Data Analysis Documentation{% endblock %}
+
+{% block content %}
+<!-- Navigation Header -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-brand">
+            <div class="brand-logo">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">DataAnalytics</span>
+                <span class="brand-label">Documentation</span>
+            </div>
+        </div>
+
+        <nav class="header-nav">
+            <a href="/" class="nav-link active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/dashboard-demo" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard Demo</span>
+            </a>
+        </nav>
+
+        <div class="header-user">
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-email">{{ user_email }}</span>
+            </div>
+            <a href="/logout" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-book-open"></i>
+                Documentation Portal
+            </div>
+            <h1 class="hero-title">Data Analysis Application</h1>
+            <p class="hero-description">
+                Complete documentation for the business intelligence and analytics platform.
+                Learn how to analyze sales, understand customers, and generate actionable reports.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Documentation Topics</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Modules</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">v1.0</span>
+                    <span class="stat-label">Version</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="visual-card">
+                <div class="visual-header">
+                    <span class="visual-dot"></span>
+                    <span class="visual-dot"></span>
+                    <span class="visual-dot"></span>
+                </div>
+                <div class="visual-content">
+                    <div class="visual-chart">
+                        <div class="chart-bar" style="height: 40%"></div>
+                        <div class="chart-bar" style="height: 65%"></div>
+                        <div class="chart-bar" style="height: 50%"></div>
+                        <div class="chart-bar" style="height: 80%"></div>
+                        <div class="chart-bar" style="height: 70%"></div>
+                        <div class="chart-bar" style="height: 90%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Documentation Modules -->
+<section class="modules-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">Documentation Modules</h2>
+            <p class="section-description">Select a topic to view detailed documentation</p>
+        </div>
+
+        <div class="modules-grid">
+            {% for module_key, module in modules.items() %}
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-{{ module.icon }}"></i>
+                    </div>
+                    <h3 class="module-title">{{ module.title }}</h3>
+                </div>
+                <div class="module-topics">
+                    {% for topic_key, topic in module.topics.items() %}
+                    <a href="/docs/{{ module_key }}/{{ topic_key }}" class="topic-link">
+                        <div class="topic-info">
+                            <span class="topic-title">{{ topic.title }}</span>
+                            <span class="topic-desc">{{ topic.description }}</span>
+                        </div>
+                        <i class="fas fa-chevron-right topic-arrow"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Quick Access Section -->
+<section class="quick-access-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">Quick Access</h2>
+            <p class="section-description">Jump to popular documentation sections</p>
+        </div>
+
+        <div class="quick-links-grid">
+            <a href="/docs/analytics/dashboard-overview" class="quick-link">
+                <div class="quick-link-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="quick-link-content">
+                    <span class="quick-link-title">Getting Started</span>
+                    <span class="quick-link-desc">Learn the basics of the dashboard</span>
+                </div>
+            </a>
+
+            <a href="/docs/data/data-import" class="quick-link">
+                <div class="quick-link-icon">
+                    <i class="fas fa-upload"></i>
+                </div>
+                <div class="quick-link-content">
+                    <span class="quick-link-title">Import Data</span>
+                    <span class="quick-link-desc">Upload and validate your data files</span>
+                </div>
+            </a>
+
+            <a href="/docs/analytics/sales-analytics" class="quick-link">
+                <div class="quick-link-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="quick-link-content">
+                    <span class="quick-link-title">Sales Reports</span>
+                    <span class="quick-link-desc">Analyze revenue and product performance</span>
+                </div>
+            </a>
+
+            <a href="/dashboard-demo" class="quick-link featured">
+                <div class="quick-link-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="quick-link-content">
+                    <span class="quick-link-title">Live Dashboard Demo</span>
+                    <span class="quick-link-desc">Interactive dashboard with sample data</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- System Info Footer -->
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <p class="footer-text">
+                <i class="fas fa-shield-alt"></i>
+                This documentation is protected. All access is logged and watermarked.
+            </p>
+            <p class="footer-meta">
+                Session: {{ user_email }} | Accessed: {{ timestamp }}
+            </p>
+        </div>
+        <div class="footer-badge">
+            <span class="demo-tag">DEMO DOCUMENTATION</span>
+        </div>
+    </div>
+</footer>
+{% endblock %}

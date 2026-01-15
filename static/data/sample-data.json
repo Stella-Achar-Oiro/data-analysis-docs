@@ -1,0 +1,311 @@
+{
+  "metadata": {
+    "generated": "2026-01-15",
+    "version": "1.0",
+    "description": "Anonymous sample data for demonstration purposes",
+    "notice": "All data is fictional and for portfolio demonstration only"
+  },
+  "summary": {
+    "totalRevenue": 978450,
+    "totalOrders": 3842,
+    "totalCustomers": 1567,
+    "averageOrderValue": 254.67,
+    "growthRate": 12.5,
+    "period": "Last 12 Months"
+  },
+  "monthlyRevenue": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "values": [45000, 52000, 48000, 67000, 75000, 82000, 78000, 91000, 98000, 105000, 112000, 125000]
+  },
+  "monthlyOrders": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "values": [150, 175, 160, 220, 250, 275, 260, 305, 328, 352, 375, 418]
+  },
+  "monthlyCustomers": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "values": [80, 95, 88, 115, 130, 142, 135, 158, 170, 182, 195, 210]
+  },
+  "products": {
+    "topProducts": [
+      {
+        "id": "PROD-A",
+        "name": "Product A",
+        "revenue": 125000,
+        "units": 420,
+        "avgPrice": 297.62
+      },
+      {
+        "id": "PROD-B",
+        "name": "Product B",
+        "revenue": 98000,
+        "units": 355,
+        "avgPrice": 276.06
+      },
+      {
+        "id": "PROD-C",
+        "name": "Product C",
+        "revenue": 87000,
+        "units": 310,
+        "avgPrice": 280.65
+      },
+      {
+        "id": "PROD-D",
+        "name": "Product D",
+        "revenue": 65000,
+        "units": 245,
+        "avgPrice": 265.31
+      },
+      {
+        "id": "PROD-E",
+        "name": "Product E",
+        "revenue": 52000,
+        "units": 195,
+        "avgPrice": 266.67
+      }
+    ]
+  },
+  "categories": {
+    "labels": ["Electronics", "Clothing", "Home & Garden", "Sports", "Books"],
+    "values": [285000, 195000, 165000, 125000, 85000],
+    "percentages": [29.1, 19.9, 16.9, 12.8, 8.7]
+  },
+  "customerSegments": {
+    "segments": [
+      {
+        "name": "High Value",
+        "criteria": ">$5,000/year",
+        "count": 45,
+        "percentage": 15,
+        "avgSpend": 8450,
+        "revenue": 380250
+      },
+      {
+        "name": "Regular",
+        "criteria": "$1,000-$5,000/year",
+        "count": 105,
+        "percentage": 35,
+        "avgSpend": 2850,
+        "revenue": 299250
+      },
+      {
+        "name": "Occasional",
+        "criteria": "<$1,000/year",
+        "count": 150,
+        "percentage": 50,
+        "avgSpend": 650,
+        "revenue": 97500
+      }
+    ]
+  },
+  "regions": {
+    "data": [
+      {
+        "name": "Region A",
+        "revenue": 320000,
+        "orders": 1100,
+        "customers": 485,
+        "avgOrderValue": 291
+      },
+      {
+        "name": "Region B",
+        "revenue": 275000,
+        "orders": 920,
+        "customers": 398,
+        "avgOrderValue": 299
+      },
+      {
+        "name": "Region C",
+        "revenue": 198000,
+        "orders": 680,
+        "customers": 312,
+        "avgOrderValue": 291
+      },
+      {
+        "name": "Region D",
+        "revenue": 162000,
+        "orders": 540,
+        "customers": 245,
+        "avgOrderValue": 300
+      }
+    ]
+  },
+  "recentOrders": [
+    {
+      "orderId": "ORD-10042",
+      "customer": "Customer A",
+      "product": "Product A",
+      "amount": 345.00,
+      "status": "Completed",
+      "date": "2026-01-15"
+    },
+    {
+      "orderId": "ORD-10041",
+      "customer": "Customer B",
+      "product": "Product C",
+      "amount": 189.50,
+      "status": "Completed",
+      "date": "2026-01-15"
+    },
+    {
+      "orderId": "ORD-10040",
+      "customer": "Customer C",
+      "product": "Product B",
+      "amount": 567.25,
+      "status": "Processing",
+      "date": "2026-01-14"
+    },
+    {
+      "orderId": "ORD-10039",
+      "customer": "Customer D",
+      "product": "Product E",
+      "amount": 123.00,
+      "status": "Completed",
+      "date": "2026-01-14"
+    },
+    {
+      "orderId": "ORD-10038",
+      "customer": "Customer E",
+      "product": "Product D",
+      "amount": 456.75,
+      "status": "Pending",
+      "date": "2026-01-13"
+    },
+    {
+      "orderId": "ORD-10037",
+      "customer": "Customer F",
+      "product": "Product A",
+      "amount": 298.00,
+      "status": "Completed",
+      "date": "2026-01-13"
+    },
+    {
+      "orderId": "ORD-10036",
+      "customer": "Customer G",
+      "product": "Product B",
+      "amount": 275.50,
+      "status": "Completed",
+      "date": "2026-01-12"
+    },
+    {
+      "orderId": "ORD-10035",
+      "customer": "Customer H",
+      "product": "Product C",
+      "amount": 89.99,
+      "status": "Processing",
+      "date": "2026-01-12"
+    },
+    {
+      "orderId": "ORD-10034",
+      "customer": "Customer I",
+      "product": "Product D",
+      "amount": 199.00,
+      "status": "Completed",
+      "date": "2026-01-11"
+    },
+    {
+      "orderId": "ORD-10033",
+      "customer": "Customer J",
+      "product": "Product E",
+      "amount": 134.25,
+      "status": "Completed",
+      "date": "2026-01-11"
+    }
+  ],
+  "kpis": {
+    "revenue": {
+      "current": 125450,
+      "previous": 111511,
+      "change": 12.5,
+      "target": 120000,
+      "status": "above"
+    },
+    "orders": {
+      "current": 342,
+      "previous": 316,
+      "change": 8.3,
+      "target": 330,
+      "status": "above"
+    },
+    "customers": {
+      "current": 156,
+      "previous": 135,
+      "change": 15.2,
+      "target": 140,
+      "status": "above"
+    },
+    "aov": {
+      "current": 367,
+      "previous": 379,
+      "change": -3.1,
+      "target": 375,
+      "status": "below"
+    }
+  },
+  "cohortRetention": {
+    "cohorts": [
+      {
+        "name": "Jan 2025",
+        "month0": 100,
+        "month1": 42,
+        "month2": 35,
+        "month3": 30,
+        "month6": 25,
+        "month12": 20
+      },
+      {
+        "name": "Apr 2025",
+        "month0": 100,
+        "month1": 45,
+        "month2": 38,
+        "month3": 32,
+        "month6": 27,
+        "month12": null
+      },
+      {
+        "name": "Jul 2025",
+        "month0": 100,
+        "month1": 48,
+        "month2": 40,
+        "month3": 34,
+        "month6": null,
+        "month12": null
+      },
+      {
+        "name": "Oct 2025",
+        "month0": 100,
+        "month1": 44,
+        "month2": 37,
+        "month3": null,
+        "month6": null,
+        "month12": null
+      }
+    ]
+  },
+  "seasonalIndex": {
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "values": [0.85, 0.92, 0.88, 1.05, 1.12, 1.18, 1.08, 1.15, 1.10, 1.08, 1.20, 1.35]
+  },
+  "forecast": {
+    "nextQuarter": [
+      {
+        "month": "Q2 - Month 1",
+        "predicted": 135000,
+        "lowerBound": 128000,
+        "upperBound": 142000
+      },
+      {
+        "month": "Q2 - Month 2",
+        "predicted": 142000,
+        "lowerBound": 133000,
+        "upperBound": 151000
+      },
+      {
+        "month": "Q2 - Month 3",
+        "predicted": 138000,
+        "lowerBound": 127000,
+        "upperBound": 149000
+      }
+    ],
+    "accuracy": 97.3
+  }
+}
